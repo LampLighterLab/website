@@ -1,0 +1,15 @@
+# Generated site and local build caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Local Bundler settings and installed dependencies
+.bundle/
+vendor/
+
+# macOS metadata and editor temporary files
+.DS_Store
+*.swp
+*.swo
+*~

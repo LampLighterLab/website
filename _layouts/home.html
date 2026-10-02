@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="wrap">
+    <img class="hero__logo" src="{{ '/assets/images/lamp.svg' | relative_url }}" alt="" width="160" height="160">
+    <h1 class="hero__title">{{ site.title | escape }}</h1>
+    <p class="hero__tagline">Build the light.</p>
+    <hr class="hero__rule">
+    <p class="hero__mission">{{ page.mission | escape }}</p>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="home-research">
+  <h2 id="home-research" class="eyebrow">What we work on</h2>
+  <div class="grid">
+    {% for area in site.data.research %}
+      {% include research-card.html area=area %}
+    {% endfor %}
+  </div>
+  <p class="section-link"><a class="btn" href="{{ '/research/' | relative_url }}">Explore our research</a></p>
+</section>
+
+<section class="wrap section" aria-labelledby="home-teaching">
+  <h2 id="home-teaching" class="eyebrow">In the classroom</h2>
+  <ul class="course-list">
+    {% for course in site.data.teaching %}
+      <li class="course-item">
+        <span class="course-item__number">{{ course.number | escape }}</span>
+        <div>
+          <h3 class="course-item__title"><a href="{{ '/teaching/' | relative_url }}#{{ course.number | slugify }}">{{ course.name | escape }}</a></h3>
+          {% if course.description %}<p class="course-item__description">{{ course.description | escape }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="section-link"><a class="btn" href="{{ '/teaching/' | relative_url }}">Teaching</a></p>
+</section>
+
+<section class="wrap section section--center" aria-labelledby="home-join">
+  <h2 id="home-join">Work with us</h2>
+  <p>Good collaborations begin with a conversation. We welcome the chance to exchange ideas and explore questions together.</p>
+  <p><a class="btn btn--solid" href="{{ '/join/' | relative_url }}">Working together</a></p>
+</section>

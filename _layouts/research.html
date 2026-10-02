@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">{{ page.eyebrow | default: 'What we do' | escape }}</span>
+    <h1>{{ page.title | escape }}</h1>
+    <p class="lede">{{ page.intro | escape }}</p>
+  </div>
+</div>
+<div class="wrap section">
+  <div class="prose">{{ content }}</div>
+  <h2 class="research-heading">Research directions</h2>
+  <div class="grid">
+    {% for area in site.data.research %}
+      {% include research-card.html area=area show_label=true %}
+    {% endfor %}
+  </div>
+</div>

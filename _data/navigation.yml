@@ -1,0 +1,12 @@
+- label: Research
+  url: /research/
+  section: research
+- label: People
+  url: /people/
+  section: people
+- label: Teaching
+  url: /teaching/
+  section: teaching
+- label: About
+  url: /about/
+  section: about

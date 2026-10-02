@@ -1,0 +1,39 @@
+title: LampLighter Lab
+description: Animal movement, tools for robotics and learning, and applications in agriculture.
+url: ""
+baseurl: ""
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-seo-tag
+
+collections:
+  people:
+    output: false
+  projects:
+    output: true
+    permalink: /research/:name/
+  publications:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+      section: research
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - MILESTONES.md
+  - README.md
+  - vendor
+  - scripts

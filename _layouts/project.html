@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<div class="page-head">
+  <div class="wrap wrap--narrow">
+    <span class="eyebrow">Research{% if page.eyebrow %} &middot; {{ page.eyebrow | escape }}{% endif %}</span>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.summary %}<p class="lede">{{ page.summary | escape }}</p>{% endif %}
+  </div>
+</div>
+<article class="wrap wrap--narrow section">
+  <div class="prose">{{ content }}</div>
+  <hr>
+  <a class="btn" href="{{ '/research/' | relative_url }}">All research</a>
+</article>

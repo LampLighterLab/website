@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">{{ page.eyebrow | default: 'The lab' | escape }}</span>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.intro %}<p class="lede">{{ page.intro | escape }}</p>{% endif %}
+  </div>
+</div>
+<div class="wrap section">
+  {% assign groups = 'current,alumni' | split: ',' %}
+  {% for group in groups %}
+    {% assign members = site.people | where: 'group', group | sort: 'order' %}
+    {% if members.size > 0 %}
+      <section class="people-section" aria-labelledby="{{ group }}">
+        <h2 id="{{ group }}">{% if group == 'current' %}Lab members{% else %}Alumni{% endif %}</h2>
+        {% if group == 'alumni' %}
+          <ul class="alumni-list">
+            {% for person in members %}
+              <li>{{ person.name | escape }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+        <div class="people-grid">
+          {% for person in members %}
+            <article class="person">
+              {% if person.image %}
+                <img class="person__photo" src="{{ person.image | relative_url }}" alt="{{ person.name | escape }}" width="280" height="280" loading="lazy">
+              {% else %}
+                <div class="person__initials" aria-hidden="true">{{ person.initials | escape }}</div>
+              {% endif %}
+              <h3 class="person__name">{{ person.name | escape }}</h3>
+              <p class="person__role">{{ person.role | escape }}</p>
+            </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+    {% endif %}
+  {% endfor %}
+  {% if content != '' %}<div class="prose">{{ content }}</div>{% endif %}
+</div>
