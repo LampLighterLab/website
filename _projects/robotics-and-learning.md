@@ -7,12 +7,12 @@ description: Mathematical theory, computational methods, and hardware for roboti
 summary: We build new tools when the questions we want to answer outgrow the existing toolbox.
 ---
 
-Both our [curiosity driven]({{ '/research/animal-movement/' | relative_url }}) and [application driven]({{ '/research/agriculture/' | relative_url }}) research often points to missing algorithmic or hardware tools, that are research-topics in themselves.
+Both our [curiosity-driven]({{ '/research/animal-movement/' | relative_url }}) and [application-driven]({{ '/research/agriculture/' | relative_url }}) research often point to gaps in the available algorithms and hardware. Developing the missing tools becomes a research topic in itself.
 
 Current projects include:
 
-**Physics-informed neural-networks for learning reduced order models**
+**Physics-informed neural networks for learning reduced-order models**
 
-**Structure neural-networks for sample-efficient, off-policy RL**
+**Structured neural networks for sample-efficient, off-policy reinforcement learning**
 
-**Microfluidic actuation leveraging non-newtonian fluid-dynamics**
+**Microfluidic actuation using non-Newtonian fluid dynamics**

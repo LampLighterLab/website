@@ -7,7 +7,7 @@ description: Research questions about animal locomotion, body form, dynamics, an
 summary: How and why do animals (learn to) move the way they do?
 ---
 
-We're always looking for examples where biology solves dynamics in ways that don't make sense to our current mathematical models and engineering tools; that's where we can push the boundaries, develop new maths, and _build the light_!
+We're always looking for examples of how biology solves problems in dynamics in ways that our current mathematical models and engineering tools can't explain; that's where we can push the boundaries, develop new mathematics, and _build the light_!
 
 Current topics include:
 
@@ -15,4 +15,4 @@ Current topics include:
 
 **How do bipedal hoppers of different sizes, from jerboas to kangaroos, use their tails?**
 
-**What is the role of morphology and fluid-dynamics in spider actuation**?
+**What is the role of morphology and fluid dynamics in spider actuation?**

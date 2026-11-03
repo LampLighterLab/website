@@ -100,6 +100,16 @@ photos, initials, or roles. Change a person's `group` to `alumni` to move them t
 that list; their other data can stay in the record. `people.md` controls the page
 title and description.
 
+To link a current member or alumnus to their personal page, set `website` in
+their profile's front matter to a full URL, for example:
+
+```yaml
+website: "https://example.com/"
+```
+
+Their name becomes a link on the People page. Leave `website` blank or omit it
+to display their name as plain text.
+
 ### Portraits and other assets
 
 | Asset | Folder |

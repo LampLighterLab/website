@@ -13,6 +13,6 @@ While this thrust offers ample opportunities to explore both tools and connectio
 
 Current projects include:
 
-**Using robotics RL tools to understand how to help horses recover from anesthesia**
+**Using reinforcement learning tools from robotics to understand how to help horses recover from anesthesia**
 
-**Early detection of lameness and gait anomalies in livestock, using embodied latent-dynamics models**
+**Early detection of lameness and gait anomalies in livestock using embodied latent-dynamics models**

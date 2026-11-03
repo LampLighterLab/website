@@ -19,7 +19,7 @@ layout: default
         {% if group == 'alumni' %}
           <ul class="alumni-list">
             {% for person in members %}
-              <li>{{ person.name | escape }}</li>
+              <li>{% include person-name.html person=person %}</li>
             {% endfor %}
           </ul>
         {% else %}
@@ -31,7 +31,7 @@ layout: default
               {% else %}
                 <div class="person__initials" aria-hidden="true">{{ person.initials | escape }}</div>
               {% endif %}
-              <h3 class="person__name">{{ person.name | escape }}</h3>
+              <h3 class="person__name">{% include person-name.html person=person %}</h3>
               <p class="person__role">{{ person.role | escape }}</p>
             </article>
           {% endfor %}

@@ -10,3 +10,6 @@
 - label: About
   url: /about/
   section: about
+- label: Joining
+  url: /join/
+  section: join
