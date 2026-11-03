@@ -13,12 +13,4 @@ intro: When the question lies beyond the light, build a new lamppost.
 
 — Noam Chomsky, letter to Robert Barsky, 14 June 1993
 
-We choose to disagree. If the real question is on the other side of the road, in the dark, we will cross over, erect a new lamppost, and search there.
-
-**We build the light.**
-
-## The approach
-
-Our curiosity centers on animal movement: how bodies move, how animals learn, and how to describe those dynamics rigorously. When the available tools cannot answer the question, developing new tools becomes part of the research.
-
-That approach connects our work in biology, robotics and machine learning, and agriculture. [Explore our research]({{ '/research/' | relative_url }}).
+Our philosophy is to start with experimentation and observation. The best research questions are where we struggle to describe what we see in clean mathematical formalism; it means we don't know the right math yet. We should choose to ask those questions anyway, and _build the light_ where we need it.

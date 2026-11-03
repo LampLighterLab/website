@@ -7,11 +7,11 @@ description: Mathematical theory, computational methods, and hardware for roboti
 summary: We build new tools when the questions we want to answer outgrow the existing toolbox.
 ---
 
-Both our [curiosity driven]() and [application driven]() research often points to missing algorithmic or hardware tools, that are research-topics in themselves.
+Both our [curiosity driven]({{ '/research/animal-movement/' | relative_url }}) and [application driven]({{ '/research/agriculture/' | relative_url }}) research often points to missing algorithmic or hardware tools, that are research-topics in themselves.
 
 Current projects include:
 
-**Physics-informed neural-networks for latent-dynamics models at multiple time-scales**
+**Physics-informed neural-networks for learning reduced order models**
 
 **Structure neural-networks for sample-efficient, off-policy RL**
 
