@@ -43,6 +43,8 @@ subpath production builds pass. Reviewed in Chrome at 1440, 768, 390, and 320px.
 - [ ] Supply concrete project records before adding project-specific claims:
   question, description, contributors, status, results, and paper/code/data links.
 - [ ] Choose a publication source and provide the initial bibliography.
+  A Google Scholar profile is linked from Research; the local Publications page
+  remains unpublished until it has content.
 - [ ] Supply approved photographs and research figures, with captions, credits,
   and alternative text.
 - [ ] Confirm current recruitment guidance and the collaboration contact.
@@ -56,12 +58,15 @@ subpath production builds pass. Reviewed in Chrome at 1440, 768, 390, and 320px.
   contrast, and current image alternative text.
 - [ ] Check external links and any newly supplied images.
 - [ ] Review the site in the target browsers and optimize any supplied images.
-- [ ] Choose the hosting platform, production URL, and any hosting subpath.
-- [ ] Configure production URL/base path, HTTPS, and deployment; verify the final
-  address.
-- [ ] Establish a Git baseline and document deployment and rollback.
+- [x] Prepare GitHub Pages deployment for `LampLighterLab/website`, with production
+  defaults at `https://lamplighterlab.github.io/website/` and a workflow that
+  builds pull requests and deploys `main`.
+- [ ] Enable GitHub Actions as the publishing source in Settings → Pages, push
+  the workflow, and verify the first deployment and HTTPS at the final address.
+- [x] Establish a Git baseline and document deployment and rollback.
 - [ ] Have a lab member follow the README to update a page or research area.
 - [ ] Complete the lab's content and design review, then publish.
 
-The current work is the local site rebuild. Deployment remains a separate launch
-step. See [README.md](README.md) for local build, preview, and editing instructions.
+The repository is prepared for GitHub Pages; publication still requires the
+repository setting and first deployment above. See [README.md](README.md) for
+local previews, deployment, rollback, and editing instructions.

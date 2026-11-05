@@ -1,0 +1,4 @@
+# Production defaults for github.com/LampLighterLab/website.
+# Keep local previews at / by loading this file only for production builds.
+url: "https://lamplighterlab.github.io"
+baseurl: "/website"

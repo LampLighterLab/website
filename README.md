@@ -28,9 +28,65 @@ bundle exec jekyll build
 The generated static site is written to `_site/`. Edit source files rather than
 this output. Restart the server after changing `_config.yml`.
 
-Hosting and deployment are not configured yet. Before deploying, set `url` in
-`_config.yml` to the production origin and `baseurl` to the hosting subpath, if
-there is one.
+Local previews use `_config.yml` and stay at the root URL above. Production
+builds also load `_config.production.yml` for the public origin and subpath.
+
+## GitHub Pages deployment
+
+The current repository, `LampLighterLab/website`, has the default Pages address
+<https://lamplighterlab.github.io/website/>. `.github/workflows/pages.yml`
+builds the site using Ruby 3.4 and the dependencies in `Gemfile.lock`, then uploads
+only `_site/` to GitHub Pages. Pull requests to `main` build without deploying;
+pushes to `main` and manual runs on `main` build and deploy.
+
+Before the first deployment:
+
+1. Open the repository's [Settings → Pages](https://github.com/LampLighterLab/website/settings/pages).
+   Under **Build and deployment → Source**, select **GitHub Actions**. Use the
+   workflow already in this repository; there is no need to create another one.
+2. Ensure GitHub Actions is enabled for the repository and the organization
+   permits the actions used in the workflow. A public repository works with
+   GitHub Free; private repositories require a plan that supports Pages.
+3. Commit and push the source changes to `main`. In **Actions**, check that
+   **Build and deploy website** finishes successfully. Once the workflow is on
+   `main`, **Run workflow** can also deploy it without a new commit.
+4. Open the deployed URL from the workflow. Check Home, research detail pages,
+   People and portraits, Teaching, Joining, and an unknown URL to test the 404.
+   Confirm **Enforce HTTPS** in Pages settings.
+
+The workflow uses GitHub's automatic token; no personal access token, deployment
+key, `gh-pages` branch, or committed `_site/` folder is needed. Pages must be
+enabled in Settings before the workflow, including pull request builds, can read
+its settings. The workflow reads the configured base path from GitHub so links
+and assets use `/website/` on the default project site.
+
+To preview the production configuration locally, stop any existing preview server
+and run:
+
+```sh
+bundle exec jekyll serve --config _config.yml,_config.production.yml
+```
+
+Open <http://127.0.0.1:4000/website/>. To check the production build alone:
+
+```sh
+JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config.production.yml --strict_front_matter
+```
+
+For a custom domain, configure it and its DNS in Pages settings, then update
+`url` in `_config.production.yml` to the HTTPS origin and `baseurl` to the new
+subpath (usually `""`). For an organization site at
+`https://lamplighterlab.github.io/`, the repository must instead be named
+`LampLighterLab.github.io`; use an empty production `baseurl` and update the
+repository links in this README. Neither option is required for the current
+project address.
+
+For rollback, revert the offending source commit on `main` and push the revert.
+The workflow rebuilds and deploys the restored source. Keep generated files out
+of Git during deployment and rollback.
+
+See GitHub's [publishing source instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+and [site URL conventions](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
 
 ## What belongs in Git
 
