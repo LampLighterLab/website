@@ -26,11 +26,7 @@ layout: default
         <div class="people-grid">
           {% for person in members %}
             <article class="person">
-              {% if person.image %}
-                <img class="person__photo" src="{{ person.image | relative_url }}" alt="{{ person.name | escape }}" width="280" height="280" loading="lazy">
-              {% else %}
-                <div class="person__initials" aria-hidden="true">{{ person.initials | escape }}</div>
-              {% endif %}
+              {% include person-portrait.html person=person %}
               <h3 class="person__name">{% include person-name.html person=person %}</h3>
               <p class="person__role">{{ person.role | escape }}</p>
             </article>

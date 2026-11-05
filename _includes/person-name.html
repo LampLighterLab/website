@@ -1,0 +1,6 @@
+{%- assign website = include.person.website | default: '' | strip -%}
+{%- if website != '' -%}
+  <a href="{{ website | escape }}">{{ include.person.name | escape }}</a>
+{%- else -%}
+  {{ include.person.name | escape }}
+{%- endif -%}

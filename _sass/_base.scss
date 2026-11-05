@@ -360,7 +360,6 @@ code {
   background: var(--surface-2);
 }
 
-.person__photo { filter: grayscale(100%) contrast(1.05); }
 .person__initials { display: grid; place-items: center; font-family: var(--font-display); font-size: 2.5rem; color: var(--gold-dim); }
 .person__name { font-family: var(--font-display); font-size: 1.05rem; color: var(--cream); margin: 0.9rem 0 0.15rem; }
 .person__role { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-dim); margin: 0; }

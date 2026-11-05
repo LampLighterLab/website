@@ -94,8 +94,10 @@ these aligned, and preserve public URLs or add redirects when changing them.
 
 To update People, edit or add a Markdown record in `_people/`. Its front matter
 uses `name`, `role`, `group` (`current` or `alumni`), `initials`, and a numeric
-`order` within that group. An optional `image` path replaces the initials with a
-portrait for current members. Alumni render as a simple list of names, without
+`order` within that group. Use lowercase filenames with underscores, such as
+`_people/steve_heim.md`. Current members automatically use a portrait with the
+same filename stem from `assets/images/people/`, or initials if none exists.
+An optional `image` path overrides the automatic match. Alumni render as a simple list of names, without
 photos, initials, or roles. Change a person's `group` to `alumni` to move them to
 that list; their other data can stay in the record. `people.md` controls the page
 title and description.
@@ -119,12 +121,20 @@ to display their name as plain text.
 | PDFs, CVs, and other downloadable files | `assets/files/` |
 | Lamp mark and favicon | `assets/images/lamp.svg` |
 
-Use lowercase filenames with hyphens. For portraits, a square JPG or WebP around
-600–800 pixels across is sufficient. Portraits are displayed as circles in
-grayscale, so leave space around the face.
+Use lowercase filenames with underscores for person records and portraits;
+use hyphens for other assets. For portraits, a square image around 600–800 pixels
+across is sufficient. Portraits are displayed as circles in their original colors, so leave
+space around the face.
+
+Portraits match the profile filename, not the display name in its `name` field.
+For example, `_people/steve_heim.md` automatically uses
+`assets/images/people/steve_heim.png`. Supported extensions are `.jpg`, `.jpeg`,
+`.png`, and `.webp`, checked in that order if more than one matches. Use lowercase
+extensions. No `image` field is needed; if no matching portrait exists, initials
+are shown instead.
 
 To add your own profile, place your portrait at
-`assets/images/people/your-name.jpg` and create `_people/your-name.md`:
+`assets/images/people/your_name.jpg` and create `_people/your_name.md`:
 
 ```yaml
 ---
@@ -133,16 +143,20 @@ role: Principal investigator
 group: current
 initials: YN
 order: 0
-image: /assets/images/people/your-name.jpg
 ---
 ```
 
 Replace the example name, role, initials, and filename with your information.
 An `order` of `0` places you before the existing members. For an existing member,
-add the `image` line to their file in `_people/`.
+add a portrait with the same filename stem as their file in `_people/`.
+To use a different filename or location, set an explicit override:
 
-Dropping an asset into a folder does not automatically display it. Add a link or
-image to the relevant Markdown page, for example in `_projects/animal-movement.md`:
+```yaml
+image: /assets/images/people/custom_portrait.jpg
+```
+
+Other assets need a link or image in the relevant Markdown page, for example in
+`_projects/animal-movement.md`:
 
 ```liquid
 ![Describe what this figure shows]({{ '/assets/images/research/movement.jpg' | relative_url }})

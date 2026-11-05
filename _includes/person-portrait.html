@@ -1,0 +1,18 @@
+{%- assign portrait = include.person.image | default: '' | strip -%}
+{%- if portrait == '' -%}
+  {%- assign profile_name = include.person.path | split: '/' | last | remove: '.md' -%}
+  {%- assign extensions = 'jpg,jpeg,png,webp' | split: ',' -%}
+  {%- for extension in extensions -%}
+    {%- assign candidate = '/assets/images/people/' | append: profile_name | append: '.' | append: extension -%}
+    {%- assign matching_file = site.static_files | where: 'path', candidate | first -%}
+    {%- if matching_file -%}
+      {%- assign portrait = candidate -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if portrait != '' -%}
+  <img class="person__photo" src="{{ portrait | relative_url | escape }}" alt="{{ include.person.name | escape }}" width="280" height="280" loading="lazy">
+{%- else -%}
+  <div class="person__initials" aria-hidden="true">{{ include.person.initials | escape }}</div>
+{%- endif -%}
