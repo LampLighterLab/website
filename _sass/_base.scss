@@ -202,17 +202,12 @@ code {
 .section-link { margin-top: 2rem; margin-bottom: 0; }
 
 .page-head {
-  padding-block: clamp(3.5rem, 7.5vw, 6rem) 3.25rem;
+  padding-block: clamp(3.5rem, 7.5vw, 6rem) 1.5rem;
   border-bottom: 1px solid var(--line);
 }
 
-.page-head .lede {
-  text-wrap: balance;
-  font-size: 1.2rem;
-  color: var(--muted);
-  max-width: 80ch;
-  margin-bottom: 0;
-}
+.page-head h1 { margin-bottom: 0; }
+.page-head + .section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 
 .site-footer {
   border-top: 1px solid var(--line);
@@ -286,18 +281,6 @@ code {
 .section--center p { margin-inline: auto; }
 .section--center p:last-child { margin-bottom: 0; }
 
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.74rem;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 1rem;
-  display: block;
-}
-
 .btn {
   display: inline-block;
   border: 1px solid var(--gold);
@@ -367,6 +350,8 @@ code {
 .people-section h2 { margin-bottom: 1.75rem; }
 .alumni-list { list-style: none; padding: 0; margin: 0; }
 .alumni-list li { padding-block: 0.35rem; font-family: var(--font-display); font-size: 1.15rem; color: var(--cream); }
+
+.text-small { font-size: 0.9em; }
 
 .prose { max-width: var(--measure); overflow-wrap: break-word; }
 .prose > :first-child { margin-top: 0; }

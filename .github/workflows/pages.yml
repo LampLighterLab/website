@@ -38,12 +38,14 @@ jobs:
 
       - name: Build with Jekyll
         env:
+          PAGES_ORIGIN: ${{ steps.pages.outputs.origin }}
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-        run: >-
-          bundle exec jekyll build
-          --config _config.yml,_config.production.yml
-          --baseurl "$PAGES_BASE_PATH"
-          --strict_front_matter
+          PAGES_CONFIG: ${{ runner.temp }}/jekyll-pages.yml
+        run: |
+          ruby -ryaml -e 'File.write(ENV.fetch("PAGES_CONFIG"), {"url" => ENV.fetch("PAGES_ORIGIN"), "baseurl" => ENV.fetch("PAGES_BASE_PATH")}.to_yaml)'
+          bundle exec jekyll build \
+            --config "_config.yml,_config.production.yml,$PAGES_CONFIG" \
+            --strict_front_matter
 
       - name: Upload generated site
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

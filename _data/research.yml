@@ -1,21 +1,17 @@
 - slug: animal-movement
-  label: Curiosity-driven research
   title: Animal movement
   summary: >-
     How and why do animals learn to move the way they do? We study dynamics
-    and locomotion in biology, turning familiar movements into questions
-    we can describe rigorously.
+    and locomotion in biology, with an emphasis on how morphology shapes learning and control.
 
 - slug: robotics-and-learning
-  label: Tool-driven research
   title: Robotics and learning
   summary: >-
-    When the existing toolbox falls short, we build new tools. Our work spans
+    When observations and intuition don't match our models and mathematics, we build new tools. Our work spans
     mathematical theory, computational methods, and hardware for robotics
     and machine learning.
 
 - slug: agriculture
-  label: Application-driven research
   title: Agriculture
   summary: >-
     Feeding a growing population sustainably is one of the grand challenges for our

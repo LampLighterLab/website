@@ -1,5 +1,4 @@
 <a class="card card__link" href="{{ '/research/' | append: include.area.slug | append: '/' | relative_url }}">
-  {% if include.show_label %}<span class="eyebrow">{{ include.area.label | escape }}</span>{% endif %}
   <h3>{{ include.area.title | escape }}</h3>
   <p>{{ include.area.summary | escape }}</p>
 </a>

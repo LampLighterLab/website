@@ -33,9 +33,11 @@ builds also load `_config.production.yml` for the public origin and subpath.
 
 ## GitHub Pages deployment
 
-The current repository, `LampLighterLab/website`, has the default Pages address
-<https://lamplighterlab.github.io/website/>. `.github/workflows/pages.yml`
-builds the site using Ruby 3.4 and the dependencies in `Gemfile.lock`, then uploads
+The intended public address is <https://lamplighterlab.mae.cornell.edu/>.
+The repository can keep its name, `LampLighterLab/website`: a custom domain serves
+this site at `/`, without the repository name in the URL. Until the custom domain
+is configured, the default address is <https://lamplighterlab.github.io/website/>.
+`.github/workflows/pages.yml` builds the site using Ruby 3.4 and the dependencies in `Gemfile.lock`, then uploads
 only `_site/` to GitHub Pages. Pull requests to `main` build without deploying;
 pushes to `main` and manual runs on `main` build and deploy.
 
@@ -57,8 +59,11 @@ Before the first deployment:
 The workflow uses GitHub's automatic token; no personal access token, deployment
 key, `gh-pages` branch, or committed `_site/` folder is needed. Pages must be
 enabled in Settings before the workflow, including pull request builds, can read
-its settings. The workflow reads the configured base path from GitHub so links
-and assets use `/website/` on the default project site.
+its settings. The workflow reads both the origin and base path from GitHub, so
+canonical URLs, links, and assets follow the active hosting address: `/website/`
+on the temporary GitHub address, or `/` once the custom domain is configured.
+These values override the production defaults only during the workflow build;
+the temporary configuration is not committed or included in the public site.
 
 To preview the production configuration locally, stop any existing preview server
 and run:
@@ -67,26 +72,39 @@ and run:
 bundle exec jekyll serve --config _config.yml,_config.production.yml
 ```
 
-Open <http://127.0.0.1:4000/website/>. To check the production build alone:
+Open <http://127.0.0.1:4000/>. To check the production build alone:
 
 ```sh
 JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config.production.yml --strict_front_matter
 ```
 
-For a custom domain, configure it and its DNS in Pages settings, then update
-`url` in `_config.production.yml` to the HTTPS origin and `baseurl` to the new
-subpath (usually `""`). For an organization site at
-`https://lamplighterlab.github.io/`, the repository must instead be named
-`LampLighterLab.github.io`; use an empty production `baseurl` and update the
-repository links in this README. Neither option is required for the current
-project address.
+To connect the Cornell address:
+
+1. In this repository's **Settings → Pages → Custom domain**, enter
+   `lamplighterlab.mae.cornell.edu` and save it.
+2. Ask the Cornell/MAE DNS administrator to create this DNS record after the
+   GitHub setting is saved:
+
+   ```dns
+   lamplighterlab.mae.cornell.edu. IN CNAME lamplighterlab.github.io.
+   ```
+
+   The target is the GitHub hostname only, with no `/website` suffix.
+3. Once DNS validates and the HTTPS certificate is available, enable
+   **Enforce HTTPS** and run the deployment workflow again. Check that the home
+   page is at `/` and research pages are at `/research/.../` on the Cornell host.
+
+`_config.production.yml` already uses the Cornell origin with an empty `baseurl`.
+No repository rename or `CNAME` file is needed for this Actions deployment.
+Configure the Cornell hostname as a custom domain pointing to GitHub Pages so
+it remains the address visitors see in their browser.
 
 For rollback, revert the offending source commit on `main` and push the revert.
 The workflow rebuilds and deploys the restored source. Keep generated files out
 of Git during deployment and rollback.
 
 See GitHub's [publishing source instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-and [site URL conventions](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+and [custom subdomain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain).
 
 ## What belongs in Git
 
@@ -122,7 +140,7 @@ collection currently holds research-area pages describing the lab's existing
 themes; these pages do not represent individual projects or completed results.
 
 - `_data/research.yml` supplies the three research-area summaries. Each entry
-  contains `slug`, `label`, `title`, and `summary`.
+  contains `slug`, `title`, and `summary`.
 - `_data/navigation.yml` controls the main navigation.
 - `_people/` contains member records rendered by `_layouts/people.html`.
 - `_data/teaching.yml` supplies the course listings on Home and Teaching.
@@ -139,9 +157,22 @@ themes; these pages do not represent individual projects or completed results.
 
 ## Updating content
 
-Edit the relevant Markdown page while keeping its YAML front matter. Use `##`
-for sections beneath the page title supplied by the layout. Keep descriptions
-concise and link to source material when it is available.
+Edit the relevant Markdown page while keeping its YAML front matter. Page headers
+show only the title; put the main text directly in the Markdown body.
+Use `##` for sections beneath the page title supplied by the layout. Keep
+`description` concise for search metadata and link to source material when it is
+available.
+
+For a paragraph in a slightly smaller font, add `.text-small` on the next line:
+
+```markdown
+This paragraph is 10% smaller than the surrounding text.
+{: .text-small }
+```
+
+For just part of a sentence, use
+`<span class="text-small">smaller text</span>`. Adjust `.text-small` in
+`_sass/_base.scss` to change the size consistently across the site.
 
 To update a research area, edit both its summary in `_data/research.yml` and the
 corresponding Markdown file in `_projects/`. The data entry's `slug` should match

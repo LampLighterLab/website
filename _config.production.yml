@@ -1,4 +1,4 @@
-# Production defaults for github.com/LampLighterLab/website.
+# Production defaults for the Cornell custom domain.
 # Keep local previews at / by loading this file only for production builds.
-url: "https://lamplighterlab.github.io"
-baseurl: "/website"
+url: "https://lamplighterlab.mae.cornell.edu"
+baseurl: ""

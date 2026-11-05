@@ -2,9 +2,7 @@
 title: Agriculture
 layout: project
 permalink: /research/agriculture/
-eyebrow: Application-driven research
 description: Exploring agricultural applications of AI, robotics, and engineering at LampLighter Lab.
-summary: How can tools from AI and robotics help improve agriculture?
 ---
 
 Feeding a growing population sustainably is one of the [grand challenges of our generation](https://www.un.org/en/global-issues/food).

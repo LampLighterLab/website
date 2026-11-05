@@ -59,10 +59,12 @@ subpath production builds pass. Reviewed in Chrome at 1440, 768, 390, and 320px.
 - [ ] Check external links and any newly supplied images.
 - [ ] Review the site in the target browsers and optimize any supplied images.
 - [x] Prepare GitHub Pages deployment for `LampLighterLab/website`, with production
-  defaults at `https://lamplighterlab.github.io/website/` and a workflow that
-  builds pull requests and deploys `main`.
+  defaults at `https://lamplighterlab.mae.cornell.edu/` and a workflow that
+  builds pull requests, deploys `main`, and uses the active Pages origin and path.
 - [ ] Enable GitHub Actions as the publishing source in Settings → Pages, push
   the workflow, and verify the first deployment and HTTPS at the final address.
+- [ ] Set the Cornell hostname as the repository's custom domain, have Cornell/MAE
+  configure its CNAME to `lamplighterlab.github.io`, then redeploy and verify HTTPS.
 - [x] Establish a Git baseline and document deployment and rollback.
 - [ ] Have a lab member follow the README to update a page or research area.
 - [ ] Complete the lab's content and design review, then publish.
