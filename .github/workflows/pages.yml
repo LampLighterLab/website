@@ -26,6 +26,13 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v6
 
+      - name: Check portrait formatting and file sizes
+        run: |
+          python3 -m venv "$RUNNER_TEMP/portrait-check"
+          "$RUNNER_TEMP/portrait-check/bin/python" -m pip install -r requirements-dev.txt
+          "$RUNNER_TEMP/portrait-check/bin/python" scripts/check_commit.py --check --all
+          "$RUNNER_TEMP/portrait-check/bin/python" -m unittest discover -s tests
+
       - name: Set up Ruby and install locked dependencies
         uses: ruby/setup-ruby@v1
         with:

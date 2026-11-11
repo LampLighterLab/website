@@ -1,266 +1,79 @@
 # LampLighter Lab website
 
-A static Jekyll website for LampLighter Lab. The layout and page structure follow
-the [Lighthouse Lab reference](https://thelighthouselab.org/research/), adapted to
-a light theme and the research, people, and teaching content already in this
-repository.
+## Setup
 
-## Local development
-
-Requirements:
-
-- Ruby 3.2 or newer
-- Bundler
-
-Install dependencies and start the local server:
+Install **Ruby 3.2+**, **Bundler**, and **Python 3.11+**, then:
 
 ```sh
+git clone https://github.com/LampLighterLab/website.git
+cd website
 bundle install
+sh scripts/setup-hooks.sh
+```
+
+Run setup once per clone. It installs the photo tools and enables the commit hook.
+
+## Preview and build locally
+
+```sh
 bundle exec jekyll serve --livereload
 ```
 
-Open <http://127.0.0.1:4000>. To build without running a server:
+Open <http://127.0.0.1:4000>. Stop the server with **Ctrl+C**.
+To compile without starting a server:
 
 ```sh
 bundle exec jekyll build
 ```
 
-The generated static site is written to `_site/`. Edit source files rather than
-this output. Restart the server after changing `_config.yml`.
+Edit source files; `_site/` is generated and should not be committed.
+Restart the server after changing `_config.yml`.
 
-Local previews use `_config.yml` and stay at the root URL above. Production
-builds also load `_config.production.yml` for the public origin and subpath.
+## Add or update your profile
 
-## GitHub Pages deployment
-
-The intended public address is <https://lamplighterlab.mae.cornell.edu/>.
-The repository can keep its name, `LampLighterLab/website`: a custom domain serves
-this site at `/`, without the repository name in the URL. Until the custom domain
-is configured, the default address is <https://lamplighterlab.github.io/website/>.
-`.github/workflows/pages.yml` builds the site using Ruby 3.4 and the dependencies in `Gemfile.lock`, then uploads
-only `_site/` to GitHub Pages. Pull requests to `main` build without deploying;
-pushes to `main` and manual runs on `main` build and deploy.
-
-Before the first deployment:
-
-1. Open the repository's [Settings → Pages](https://github.com/LampLighterLab/website/settings/pages).
-   Under **Build and deployment → Source**, select **GitHub Actions**. Use the
-   workflow already in this repository; there is no need to create another one.
-2. Ensure GitHub Actions is enabled for the repository and the organization
-   permits the actions used in the workflow. A public repository works with
-   GitHub Free; private repositories require a plan that supports Pages.
-3. Commit and push the source changes to `main`. In **Actions**, check that
-   **Build and deploy website** finishes successfully. Once the workflow is on
-   `main`, **Run workflow** can also deploy it without a new commit.
-4. Open the deployed URL from the workflow. Check Home, research detail pages,
-   People and portraits, Teaching, Joining, and an unknown URL to test the 404.
-   Confirm **Enforce HTTPS** in Pages settings.
-
-The workflow uses GitHub's automatic token; no personal access token, deployment
-key, `gh-pages` branch, or committed `_site/` folder is needed. Pages must be
-enabled in Settings before the workflow, including pull request builds, can read
-its settings. The workflow reads both the origin and base path from GitHub, so
-canonical URLs, links, and assets follow the active hosting address: `/website/`
-on the temporary GitHub address, or `/` once the custom domain is configured.
-These values override the production defaults only during the workflow build;
-the temporary configuration is not committed or included in the public site.
-
-To preview the production configuration locally, stop any existing preview server
-and run:
-
-```sh
-bundle exec jekyll serve --config _config.yml,_config.production.yml
-```
-
-Open <http://127.0.0.1:4000/>. To check the production build alone:
-
-```sh
-JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config.production.yml --strict_front_matter
-```
-
-To connect the Cornell address:
-
-1. In this repository's **Settings → Pages → Custom domain**, enter
-   `lamplighterlab.mae.cornell.edu` and save it.
-2. Ask the Cornell/MAE DNS administrator to create this DNS record after the
-   GitHub setting is saved:
-
-   ```dns
-   lamplighterlab.mae.cornell.edu. IN CNAME lamplighterlab.github.io.
-   ```
-
-   The target is the GitHub hostname only, with no `/website` suffix.
-3. Once DNS validates and the HTTPS certificate is available, enable
-   **Enforce HTTPS** and run the deployment workflow again. Check that the home
-   page is at `/` and research pages are at `/research/.../` on the Cornell host.
-
-`_config.production.yml` already uses the Cornell origin with an empty `baseurl`.
-No repository rename or `CNAME` file is needed for this Actions deployment.
-Configure the Cornell hostname as a custom domain pointing to GitHub Pages so
-it remains the address visitors see in their browser.
-
-For rollback, revert the offending source commit on `main` and push the revert.
-The workflow rebuilds and deploys the restored source. Keep generated files out
-of Git during deployment and rollback.
-
-See GitHub's [publishing source instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-and [custom subdomain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain).
-
-## What belongs in Git
-
-Commit the Markdown content, YAML data and configuration, templates, Sass,
-JavaScript, images and downloadable files, documentation, `.gitignore`,
-`Gemfile`, and `Gemfile.lock`. The lockfile is generated by Bundler but belongs
-in Git so contributors and deployment use the same dependency versions.
-The `.gitkeep` files preserve intentionally empty content and asset folders.
-
-Do not commit `_site/`: Jekyll generates its HTML, compiled CSS, source maps,
-and copied assets from the source files. Also leave `.jekyll-cache/`,
-`.jekyll-metadata`, `.sass-cache/`, `.bundle/`, `vendor/`, macOS metadata,
-and editor temporary files untracked. These are covered by `.gitignore`.
-
-Run `git diff --cached` to review staged source changes before committing.
-
-## Pages and content
-
-| Page | Source | Public URL |
-| --- | --- | --- |
-| Home | `index.md` | `/` |
-| Research | `projects.md` | `/research/` |
-| Animal movement | `_projects/animal-movement.md` | `/research/animal-movement/` |
-| Robotics and learning | `_projects/robotics-and-learning.md` | `/research/robotics-and-learning/` |
-| Agriculture | `_projects/agriculture.md` | `/research/agriculture/` |
-| People | `people.md` and `_people/` | `/people/` |
-| Teaching | `teaching.md` and `_data/teaching.yml` | `/teaching/` |
-| About | `about.md` | `/about/` |
-| Join | `join.md` | `/join/` |
-
-The old `/projects/` address redirects to `/research/`. The `_projects/`
-collection currently holds research-area pages describing the lab's existing
-themes; these pages do not represent individual projects or completed results.
-
-- `_data/research.yml` supplies the three research-area summaries. Each entry
-  contains `slug`, `title`, and `summary`.
-- `_data/navigation.yml` controls the main navigation.
-- `_people/` contains member records rendered by `_layouts/people.html`.
-- `_data/teaching.yml` supplies the course listings on Home and Teaching.
-- `_layouts/` and `_includes/` contain shared page templates, navigation, and
-  footer content.
-- `_sass/` and `assets/css/` contain the typography, colors, and responsive
-  layouts. `assets/images/lamp.svg` provides both the lamp mark and favicon.
-- `assets/js/main.js` adds the mobile menu toggle; navigation remains available
-  when JavaScript is disabled.
-- `404.html` supplies the page-not-found screen.
-- `_publications/` is a reserved collection. `publications.md` has
-  `published: false` and is omitted from normal builds until bibliography content
-  is supplied. It is also absent from navigation.
-
-## Updating content
-
-Edit the relevant Markdown page while keeping its YAML front matter. Page headers
-show only the title; put the main text directly in the Markdown body.
-Use `##` for sections beneath the page title supplied by the layout. Keep
-`description` concise for search metadata and link to source material when it is
-available.
-
-For a paragraph in a slightly smaller font, add `.text-small` on the next line:
-
-```markdown
-This paragraph is 10% smaller than the surrounding text.
-{: .text-small }
-```
-
-For just part of a sentence, use
-`<span class="text-small">smaller text</span>`. Adjust `.text-small` in
-`_sass/_base.scss` to change the size consistently across the site.
-
-To update a research area, edit both its summary in `_data/research.yml` and the
-corresponding Markdown file in `_projects/`. The data entry's `slug` should match
-the filename without `.md` and the last segment of the page's `permalink`. Keep
-these aligned, and preserve public URLs or add redirects when changing them.
-
-To update People, edit or add a Markdown record in `_people/`. Its front matter
-uses `name`, `role`, `group` (`current` or `alumni`), `initials`, and a numeric
-`order` within that group. Use lowercase filenames with underscores, such as
-`_people/steve_heim.md`. Current members automatically use a portrait with the
-same filename stem from `assets/images/people/`, or initials if none exists.
-An optional `image` path overrides the automatic match. Alumni render as a simple list of names, without
-photos, initials, or roles. Change a person's `group` to `alumni` to move them to
-that list; their other data can stay in the record. `people.md` controls the page
-title and description.
-
-To link a current member or alumnus to their personal page, set `website` in
-their profile's front matter to a full URL, for example:
-
-```yaml
-website: "https://example.com/"
-```
-
-Their name becomes a link on the People page. Leave `website` blank or omit it
-to display their name as plain text.
-
-### Portraits and other assets
-
-| Asset | Folder |
-| --- | --- |
-| Your portrait and current member portraits | `assets/images/people/` |
-| Research photos and diagrams | `assets/images/research/` |
-| PDFs, CVs, and other downloadable files | `assets/files/` |
-| Lamp mark and favicon | `assets/images/lamp.svg` |
-
-Use lowercase filenames with underscores for person records and portraits;
-use hyphens for other assets. For portraits, a square image around 600–800 pixels
-across is sufficient. Portraits are displayed as circles in their original colors, so leave
-space around the face.
-
-Portraits match the profile filename, not the display name in its `name` field.
-For example, `_people/steve_heim.md` automatically uses
-`assets/images/people/steve_heim.png`. Supported extensions are `.jpg`, `.jpeg`,
-`.png`, and `.webp`, checked in that order if more than one matches. Use lowercase
-extensions. No `image` field is needed; if no matching portrait exists, initials
-are shown instead.
-
-To add your own profile, place your portrait at
-`assets/images/people/your_name.jpg` and create `_people/your_name.md`:
+Create `_people/first_last.md`, using your name in lowercase with underscores.
+For example, Steve Heim uses `_people/steve_heim.md`.
 
 ```yaml
 ---
-name: Your Name
-role: Principal investigator
+name: First Last
+role: [UG, MEng, MS, PhD, Postdoc, PI]
 group: current
-initials: YN
-order: 0
+initials: FL
+order: 1
+website: ""
 ---
 ```
 
-Replace the example name, role, initials, and filename with your information.
-An `order` of `0` places you before the existing members. For an existing member,
-add a portrait with the same filename stem as their file in `_people/`.
-To use a different filename or location, set an explicit override:
+- Replace the name and initials. Use `UG`, `MS`, `MEng`, `PhD`, or `PI` for the role.
+- Keep `order: 1`
+- Set `website` to your full personal URL, or leave it blank.
+- To update your card, edit your existing file. To move to alumni, set `group: alumni`.
 
-```yaml
-image: /assets/images/people/custom_portrait.jpg
+Place your portrait at **`assets/images/people/first_last.jpg`**, matching the
+profile filename exactly. JPG, JPEG, PNG, and WebP are supported; use lowercase
+extensions and only one photo per person. Convert HEIC to JPG first.
+Without a photo, your initials appear instead.
+
+Keep the original photo outside the repo. Choose a centered face with room around
+it: the commit hook automatically fixes rotation, crops to a square, resizes to
+at most **800×800**, and compresses to **200 KiB**. It rejects any staged file
+over **1 MiB**. To prepare the photo before previewing it:
+
+```sh
+.venv/bin/python scripts/prepare_portraits.py assets/images/people/first_last.jpg
 ```
 
-Other assets need a link or image in the relevant Markdown page, for example in
-`_projects/animal-movement.md`:
+Check your card at <http://127.0.0.1:4000/people/>, then commit and push your branch:
 
-```liquid
-![Describe what this figure shows]({{ '/assets/images/research/movement.jpg' | relative_url }})
-
-[Download the paper (PDF)]({{ '/assets/files/paper.pdf' | relative_url }})
+```sh
+git add _people/first_last.md assets/images/people/first_last.jpg
+git commit -m "Update First Last profile"
+git push
 ```
 
-These paths are relative to the site root. The `relative_url` filter also supports
-hosting the site under a subpath. Always edit source files, not `_site/`.
+The hook stages the compressed photo automatically. If it reports unstaged photo
+changes, stage the whole photo and retry. If you have no photo, omit its path
+from `git add`.
 
-To update Teaching, edit `_data/teaching.yml`. Each course has `number` and `name`;
-optional `description` and `link` fields add context and a course-information
-link. The Home page reads this same course list.
-
-Specific projects, papers, photographs, and contact details can be added when
-the lab supplies them. Record missing information in
-[MILESTONES.md](MILESTONES.md), rather than adding public placeholder copy.
-
-After changes, build the site and review the affected pages at phone and desktop
-widths. Check navigation, links, headings, and any image alternative text.
+Deployment and other editing details are in [MAINTAINING.md](MAINTAINING.md).

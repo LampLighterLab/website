@@ -35,5 +35,8 @@ exclude:
   - Gemfile.lock
   - MILESTONES.md
   - README.md
+  - MAINTAINING.md
   - vendor
   - scripts
+  - tests
+  - requirements-dev.txt
