@@ -1,6 +1,6 @@
 ---
 name: Lucas Libshutz
-role: Undergraduate
+role: UG
 group: current
 initials: LL
 order: 1

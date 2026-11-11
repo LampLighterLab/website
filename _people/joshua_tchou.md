@@ -1,6 +1,6 @@
 ---
 name: Joshua Tchou
-role: Undergraduate
+role: UG
 group: current
 initials: JT
 order: 1
