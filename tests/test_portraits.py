@@ -1,5 +1,6 @@
 import os
 import random
+import shlex
 import shutil
 import subprocess
 import sys
@@ -72,7 +73,11 @@ class CommitHookTests(unittest.TestCase):
         for name in ("check_commit.py", "prepare_portraits.py"):
             shutil.copy(ROOT / "scripts" / name, self.root / "scripts" / name)
         (self.root / ".venv/bin").mkdir(parents=True)
-        (self.root / ".venv/bin/python").symlink_to(sys.executable)
+        # A symlink here loses the runner's venv and its installed Pillow.
+        # Execute the original interpreter at its own path instead.
+        launcher = self.root / ".venv/bin/python"
+        launcher.write_text(f'#!/bin/sh\nexec {shlex.quote(sys.executable)} "$@"\n')
+        launcher.chmod(0o755)
 
     def git(self, *args, check=True):
         return subprocess.run(["git", *args], cwd=self.root, env=self.env,

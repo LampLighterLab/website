@@ -31,6 +31,16 @@ Before the first deployment:
    People and portraits, Teaching, Joining, and an unknown URL to test the 404.
    Confirm **Enforce HTTPS** in Pages settings.
 
+### Unstyled site after deployment
+
+Check **Settings → Pages → Build and deployment → Source** is **GitHub Actions**.
+The branch-based Pages builder uses Jekyll 3 and an older Sass compiler; it leaves
+`@use "base"` in the CSS instead of compiling this site's styles. A successful
+`pages build and deployment` run alongside our `Build and deploy website` run
+indicates the competing branch builder is still enabled. Select GitHub Actions
+and rerun our workflow on `main` after fixing any failed checks. Do not add a
+second suggested workflow. Our workflow checks the compiled CSS before upload.
+
 The workflow uses GitHub's automatic token; no personal access token, deployment
 key, `gh-pages` branch, or committed `_site/` folder is needed. Pages must be
 enabled in Settings before the workflow, including pull request builds, can read

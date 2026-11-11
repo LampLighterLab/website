@@ -54,6 +54,15 @@ jobs:
             --config "_config.yml,_config.production.yml,$PAGES_CONFIG" \
             --strict_front_matter
 
+      - name: Verify compiled stylesheet
+        run: |
+          grep -qF '.site-header' _site/assets/css/main.css
+          grep -qF '.text-small' _site/assets/css/main.css
+          if grep -qE '@use[[:space:]]' _site/assets/css/main.css; then
+            echo 'Stylesheet contains uncompiled Sass; build with the locked Jekyll dependencies.' >&2
+            exit 1
+          fi
+
       - name: Upload generated site
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
