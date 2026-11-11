@@ -5,7 +5,8 @@ permalink: /research/robotics-and-learning/
 description: Mathematical theory, computational methods, and hardware for robotics and machine learning at LampLighter Lab.
 ---
 
-Both our [curiosity-driven]({{ '/research/animal-movement/' | relative_url }}) and [application-driven]({{ '/research/agriculture/' | relative_url }}) research often point to gaps in the available algorithms and hardware. Developing the missing tools becomes a research topic in itself.
+Both our [curiosity-driven]({{ '/research/animal-movement/' | relative_url }}) and [application-driven]({{ '/research/agriculture/' | relative_url }}) research often point to gaps in the available algorithms and/or hardware.
+These often become research topics on their own, that generalize beyond the bio-inspired robots we focus on as case studies.
 
 Current projects include:
 

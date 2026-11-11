@@ -9,8 +9,11 @@ We're always looking for examples of how biology solves problems in dynamics in 
 
 Current topics include:
 
-**How does morphology affect how animals learn motor control?**
+**How are kangaroos able to hop at a wide-range of speeds without affecting their metabolic cost (e.g. hopping faster becomes _more_ efficient)?**
 
-**How do bipedal hoppers of different sizes, from jerboas to kangaroos, use their tails?**
+**How does scaling affect how bipedal hoppers, from jerboas to kangaroos, use their tails? What implications does this have for evolution on the biology side, and co-design on the robotics side?**
 
-**What is the role of morphology and fluid dynamics in spider actuation?**
+**How does the hierarchical structure facilitate _learning_ motor control, from low-level control to high-level symbolic decision-making?**
+
+**How does morphology affect how animals _learn_ motor control?**
+

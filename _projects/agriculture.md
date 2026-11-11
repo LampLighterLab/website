@@ -13,4 +13,4 @@ Current projects include:
 
 **Using reinforcement learning tools from robotics to understand how to help horses recover from anesthesia**
 
-**Early detection of lameness and gait anomalies in livestock using embodied latent-dynamics models**
+**Early detection of lameness and gait anomalies in livestock by learning physics-grounded latent dynamics models**
