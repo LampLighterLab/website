@@ -15,7 +15,7 @@ Our philosophy is to start with experimentation and observation. The best resear
 
 ## Expectations and Culture
 
-We value transparency, openness, and active collaboration and communication.
+We value curiosity, open collaboration both within and outside the lab, and active, transparent communication.
 
 ### Preamble
 
